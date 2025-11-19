@@ -1,66 +1,150 @@
-# 🔧 Página de Mantenimiento / Fuera de Servicio
+# 🔧 Página de Mantenimiento / Fuera de Servicio# 🔧 Pág### ✨ Características finales:
 
-Página web estática, responsiva y sobria para mostrar mensajes de estado cuando un servicio no está disponible. Configurable mediante query strings para diferentes escenarios.
+- ✅ Diseño sobrio y profesional (colores grises neutros)
+
+Página web estática, responsiva y sobria para mostrar mensajes de estado cuando un servicio no está disponible.- ✅ Mayor contraste para mejor legibilidad
+
+- ✅ Espacios reducidos (contenido compacto)
+
+## ✨ Características- ✅ 3 estados predefinidos (maintenance, offline, updating) - **solo muestran título**
+
+- ✅ 1 estado custom - **para mensajes personalizados**
+
+- 100% estático (HTML + CSS + JS vanilla)- ✅ 3 parámetros configurables: `app`, `company`, `message`
+
+- Completamente responsivo- ✅ **Favicon dinámico** - Cambia según el estado (🔧 ⚠️ 🚀 📋)
+
+- Diseño sobrio con colores neutros- ✅ 100% responsivo
+
+- Configurable vía query strings- ✅ Sin dependencias externasntenimiento / Fuera de Servicio
+
+- 4 estados: Mantenimiento, Offline, Actualizaciones y Custom
+
+- Favicon dinámico según el estadoPágina web estática, responsiva y sobria para mostrar mensajes de estado cuando un servicio no está disponible. Configurable mediante query strings para diferentes escenarios.
+
+- Timestamp automático
 
 ## 📋 Descripción
 
+## 🚀 Uso
+
 Esta es una solución simple y elegante para redirigir tráfico cuando necesitas desactivar temporalmente una aplicación web. Solo tienes que apuntar el DNS o hacer un redirect a esta página con los parámetros correspondientes.
+
+### Ejemplos
 
 ## ✨ Características
 
-- **100% estático**: Solo HTML, CSS y JavaScript vanilla - sin dependencias
-- **Completamente responsivo**: Funciona perfectamente en móviles, tablets y escritorio
-- **Diseño sobrio y profesional**: Interfaz limpia y moderna
-- **Configurable vía query strings**: Cambia el mensaje y nombre de la app sin modificar código
-- **3 estados predefinidos**: Mantenimiento, Fuera de servicio, y Actualizaciones
-- **Timestamp automático**: Muestra cuándo se cargó la página
+```bash
+
+# Mantenimiento (por defecto)- **100% estático**: Solo HTML, CSS y JavaScript vanilla - sin dependencias
+
+https://tu-dominio.com/?app=app.test.com.ar&company=focustech.com.ar- **Completamente responsivo**: Funciona perfectamente en móviles, tablets y escritorio
+
+- **Diseño sobrio y profesional**: Interfaz limpia y moderna con colores neutros
+
+# Fuera de servicio- **Configurable vía query strings**: Cambia el mensaje y nombre de la app sin modificar código
+
+https://tu-dominio.com/?status=offline&app=api.ejemplo.com&company=Mi%20Empresa- **4 estados**: Mantenimiento, Fuera de servicio, Actualizaciones y Custom
+
+- **Favicon dinámico**: El ícono de la pestaña cambia según el estado
+
+# Actualizaciones- **Timestamp automático**: Muestra cuándo se cargó la página
+
+https://tu-dominio.com/?status=updating&app=dashboard.test.com&company=TechCorp
 
 ## 🚀 Uso Rápido
 
-### Ejemplos de URLs
+# Mensaje personalizado
 
-```bash
-# Mantenimiento (por defecto) - Solo título, sin mensaje adicional
-https://tu-dominio.com/?app=app.test.com.ar&company=focustech.com.ar
+https://tu-dominio.com/?status=custom&app=portal.com&company=Mi%20Empresa&message=Volvemos%20el%20lunes%208am### Ejemplos de URLs
 
-# Fuera de servicio - Solo título
-https://tu-dominio.com/?status=offline&app=api.ejemplo.com&company=Mi%20Empresa
-
-# Actualizaciones - Solo título
-https://tu-dominio.com/?status=updating&app=dashboard.test.com&company=TechCorp
-
-# Mensaje personalizado - Con mensaje propio
-https://tu-dominio.com/?status=custom&app=portal.ejemplo.com&company=Ejemplo%20SA&message=Volvemos%20el%20lunes%20a%20las%208am
 ```
 
-## 📖 Parámetros del Query String
+```bash
 
-### `status` (opcional)
+## 📖 Parámetros# Mantenimiento (por defecto) - Solo título, sin mensaje adicional
 
-Define el tipo de mensaje a mostrar:
+https://tu-dominio.com/?app=app.test.com.ar&company=focustech.com.ar
 
-| Valor | Descripción | Icono | Contenido |
+| Parámetro | Descripción | Requerido |
+
+|-----------|-------------|-----------|# Fuera de servicio - Solo título
+
+| `status` | Tipo: `maintenance`, `offline`, `updating`, `custom` | No (default: maintenance) |https://tu-dominio.com/?status=offline&app=api.ejemplo.com&company=Mi%20Empresa
+
+| `app` | Nombre de la app/dominio | No (default: "Servicio") |
+
+| `company` | Nombre de la empresa | No |# Actualizaciones - Solo título
+
+| `message` | Mensaje personalizado (solo con `status=custom`) | Solo para custom |https://tu-dominio.com/?status=updating&app=dashboard.test.com&company=TechCorp
+
+
+
+**Nota:** Los estados `maintenance`, `offline` y `updating` solo muestran el título. Para agregar un mensaje usa `status=custom`.# Mensaje personalizado - Con mensaje propio
+
+https://tu-dominio.com/?status=custom&app=portal.ejemplo.com&company=Ejemplo%20SA&message=Volvemos%20el%20lunes%20a%20las%208am
+
+## 🧪 Prueba Local (WSL)```
+
+
+
+```bash## 📖 Parámetros del Query String
+
+# Levantar servidor
+
+python3 -m http.server 8000### `status` (opcional)
+
+
+
+# Abrir en navegador de WindowsDefine el tipo de mensaje a mostrar:
+
+http://localhost:8000/?app=app.test.com.ar&company=focustech.com.ar
+
+```| Valor | Descripción | Icono | Contenido |
+
 |-------|-------------|-------|-----------|
-| `maintenance` | Mantenimiento programado (por defecto) | 🔧 | Solo título |
-| `offline` | Servicio fuera de línea | ⚠️ | Solo título |
-| `updating` | Implementando actualizaciones | 🚀 | Solo título |
-| `custom` | Mensaje completamente personalizado | 📋 | Título + mensaje del parámetro `message` |
 
-**Nota:** Los estados predefinidos (maintenance, offline, updating) **NO** muestran mensaje adicional, solo el título para mantener la página limpia.
+### Más ejemplos| `maintenance` | Mantenimiento programado (por defecto) | 🔧 | Solo título |
+
+| `offline` | Servicio fuera de línea | ⚠️ | Solo título |
+
+```bash| `updating` | Implementando actualizaciones | 🚀 | Solo título |
+
+http://localhost:8000/?status=offline&app=api.ejemplo.com&company=TestCorp| `custom` | Mensaje completamente personalizado | 📋 | Título + mensaje del parámetro `message` |
+
+http://localhost:8000/?status=updating&app=portal.test.com
+
+http://localhost:8000/?status=custom&app=web.com&message=Mantenimiento%20hasta%20las%2018hs**Nota:** Los estados predefinidos (maintenance, offline, updating) **NO** muestran mensaje adicional, solo el título para mantener la página limpia.
+
+```
 
 ### `app` (opcional)
 
+## 🌐 Despliegue
+
 El nombre de tu aplicación, servicio o dominio.
 
-- **Por defecto**: "Servicio"
-- **Ejemplo**: `?app=app.test.com.ar`
+Sube `index.html` a cualquier hosting:
 
-### `company` (opcional)
+- GitHub Pages- **Por defecto**: "Servicio"
 
-El nombre de la empresa dueña del producto/servicio.
+- Netlify- **Ejemplo**: `?app=app.test.com.ar`
 
-- **Por defecto**: (no se muestra)
+- Vercel
+
+- Tu servidor web### `company` (opcional)
+
+
+
+Luego redirige tu dominio a esta página con los query strings cuando necesites activar el modo mantenimiento.El nombre de la empresa dueña del producto/servicio.
+
+
+
+---- **Por defecto**: (no se muestra)
+
 - **Ejemplo**: `?company=focustech.com.ar`
+
+💡 **Tip**: Guarda la URL en tu documentación para tenerla siempre a mano.
 
 ### `message` (solo para status=custom)
 
